@@ -1,0 +1,31 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<form id="ContactForm" onsubmit="return f1();">
+    Your Name: <input type="text" name="name" value="" /><br /> 
+    Your Email: <input type="text" name="email" value="" /><br /> 
+    Your Message:<br /> <textarea style="width: 200px; height: 100px;" name="message"></textarea> 
+    <br /><br /> 
+    <input type="submit" name="submit" value="Submit" /><br />
+    <div id="d1"> </div>
+</form>
+
+<script type="text/javascript">
+			function f1() {
+			    $.ajax({
+			        type: 'POST', url: '/home/save', data: $('#ContactForm').serialize(),
+			        success: function (x) {
+				    $('#d1').text(x);
+			        },
+			        error: function()
+			        {
+			            alert('some error');
+			        }
+			    });
+				
+				return false;
+			}
+		</script>
